@@ -1,0 +1,4 @@
+com/myorg/technical/service/entity/UserEntity.class
+com/myorg/technical/service/ServiceConfiguration.class
+com/myorg/technical/service/business/SignupBusinessService.class
+com/myorg/technical/service/dao/UserDao.class
