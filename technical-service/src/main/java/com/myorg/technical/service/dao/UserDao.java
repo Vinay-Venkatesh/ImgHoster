@@ -3,6 +3,7 @@ package com.myorg.technical.service.dao;
 import com.myorg.technical.service.entity.UserEntity;
 import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 @Repository
@@ -12,6 +13,16 @@ public class UserDao {
 
     public UserEntity createUser(UserEntity userEntity) {
         entityManager.persist(userEntity);
-        return  userEntity;
+        return userEntity;
+    }
+
+    public UserEntity getUser(String email){
+        try {
+            return entityManager.createNamedQuery("userByEmail", UserEntity.class)
+                    .setParameter("email", email)
+                    .getSingleResult();
+        }catch (NoResultException nre){
+            return null;
+        }
     }
 }

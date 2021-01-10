@@ -27,6 +27,11 @@ LAST_LOGIN_AT        TIMESTAMP (Null to make its default value as null)
 
 @Entity //annotation which defines that a class can be mapped to a Table
 @Table(name = "USERS", schema = "imagehoster")
+@NamedQueries(
+        {
+                @NamedQuery(name="userByEmail",query = "select u from UserEntity u where u.email =:email")
+        }
+)
 public class UserEntity implements Serializable {
 
     //The @Column annotation helps to specify the properties of the column to which this field or attribute will be matched.
