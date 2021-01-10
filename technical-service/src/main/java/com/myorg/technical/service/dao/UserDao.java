@@ -1,5 +1,6 @@
 package com.myorg.technical.service.dao;
 
+import com.myorg.technical.service.entity.UserAuthTokenEntity;
 import com.myorg.technical.service.entity.UserEntity;
 import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
@@ -24,5 +25,14 @@ public class UserDao {
         }catch (NoResultException nre){
             return null;
         }
+    }
+
+    public UserAuthTokenEntity createAuthToken(final UserAuthTokenEntity userAuthTokenEntity){
+        entityManager.persist(userAuthTokenEntity);
+        return userAuthTokenEntity;
+    }
+
+    public void updateUser(final UserEntity updatedUserEntity){
+        entityManager.merge(updatedUserEntity);
     }
 }

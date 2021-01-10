@@ -118,6 +118,7 @@
                                 <orderFile>none</orderFile>
                                 <srcFiles>
                                     <srcFile>${sql.path}/db-signup.sql</srcFile>
+                                    <srcFile>${sql.path}/db-authenticate.sql</srcFile>
                                 </srcFiles>
                             </configuration>
                         </execution>
