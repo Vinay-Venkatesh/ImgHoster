@@ -40,6 +40,11 @@ public class SignupController {
 
         //After setting the attributes of userEntity, pass it to signup() method, to add this object to a persistent context
         final UserEntity createdUserEntity = signupBusinessService.signup(userEntity);
+        if(createdUserEntity == null){
+            //Declaring an object of SignupUserResponse type and set its attributes using createdUserEntity.
+            SignupUserResponse userResponse = new SignupUserResponse().id(userEntity.getEmail()).status("USER ALREADY EXISTS");
+            return new ResponseEntity<SignupUserResponse>(userResponse,HttpStatus.ALREADY_REPORTED);
+        }
 
         //Declaring an object of SignupUserResponse type and set its attributes using createdUserEntity.
         SignupUserResponse userResponse = new SignupUserResponse().id(createdUserEntity.getUuid()).status("USER SUCCESSFULLY REGISTERED");
