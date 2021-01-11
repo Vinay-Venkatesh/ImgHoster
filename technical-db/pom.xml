@@ -119,6 +119,7 @@
                                 <srcFiles>
                                     <srcFile>${sql.path}/db-signup.sql</srcFile>
                                     <srcFile>${sql.path}/db-authenticate.sql</srcFile>
+                                    <srcFile>${sql.path}/db-imageupload.sql</srcFile>
                                 </srcFiles>
                             </configuration>
                         </execution>
