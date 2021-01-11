@@ -3,6 +3,7 @@ package com.myorg.technical.service.business;
 import com.myorg.technical.service.dao.UserDao;
 import com.myorg.technical.service.entity.UserAuthTokenEntity;
 import com.myorg.technical.service.entity.UserEntity;
+import com.myorg.technical.service.exception.AuthenticationFailedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -20,9 +21,13 @@ public class AuthenticationService {
     private PasswordCryptographyProvider cryptographyProvider;
 
     @Transactional(propagation = Propagation.REQUIRED)
-    public UserAuthTokenEntity authenticate(final String username ,final String password) throws UnexpectedException {
+    public UserAuthTokenEntity authenticate(final String username ,final String password) throws UnexpectedException, AuthenticationFailedException {
 
-        UserEntity userEntity = userDao.getUser(username);
+        UserEntity userEntity = userDao.getUserByEmail(username);
+        //Custom Exception
+        if(userEntity == null){
+            throw new AuthenticationFailedException("ATH-001","User with email "+username+" does not exists..");
+        }
         String encryptedPassword = cryptographyProvider.encrypt(password, userEntity.getSalt());
 
         //Now encryptedPassword contains the password entered by the user in encrypted form
@@ -48,7 +53,8 @@ public class AuthenticationService {
             userEntity.setLastLoginAt(now);
             return userAuthTokenEntity;
         }else{
-            return null;
+            //Custom Exception
+            throw new AuthenticationFailedException("AUTH-002","Password Mismatch");
         }
     }
 }
