@@ -4,5 +4,6 @@ com/myorg/technical/service/business/PasswordCryptographyProvider.class
 com/myorg/technical/service/business/AuthenticationService.class
 com/myorg/technical/service/entity/UserEntity.class
 com/myorg/technical/service/ServiceConfiguration.class
+com/myorg/technical/service/exception/AuthenticationFailedException.class
 com/myorg/technical/service/business/SignupBusinessService.class
 com/myorg/technical/service/dao/UserDao.class

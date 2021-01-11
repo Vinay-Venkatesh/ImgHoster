@@ -244,6 +244,32 @@
         "mobile_number": "7508740564",
         "role": "nonadmin"
       }
+    },
+
+    "ErrorResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "Application specific standard error code"
+        },
+        "message": {
+          "type": "string",
+          "description": "Error message stating the reason"
+        },
+        "root_cause": {
+          "type": "string",
+          "description": "Root cause of the Error"
+        }
+      },
+      "required": [
+        "code",
+        "message"
+      ],
+      "example": {
+        "code": "USR-001",
+        "message": "Email address already exist"
+      }
     }
   }
 }

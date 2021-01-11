@@ -4,6 +4,7 @@ import com.myorg.technical.api.model.AuthorizedUserResponse;
 import com.myorg.technical.service.business.AuthenticationService;
 import com.myorg.technical.service.entity.UserAuthTokenEntity;
 import com.myorg.technical.service.entity.UserEntity;
+import com.myorg.technical.service.exception.AuthenticationFailedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -25,7 +26,7 @@ public class AuthenticationController {
     private AuthenticationService authenticationService;
 
     @RequestMapping(method = RequestMethod.POST,path = "/auth/login",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<AuthorizedUserResponse> login(@RequestHeader("authorization")  final String authorization) throws UnexpectedException {
+    public ResponseEntity<AuthorizedUserResponse> login(@RequestHeader("authorization")  final String authorization) throws UnexpectedException, AuthenticationFailedException {
         byte[] decode = Base64.getDecoder().decode(authorization.split("Basic")[1].replace(" ",""));
         String decodedText = new String(decode);
         String[] decodedArray = decodedText.split(":");

@@ -17,7 +17,7 @@ public class UserDao {
         return userEntity;
     }
 
-    public UserEntity getUser(String email){
+    public UserEntity getUserByEmail(String email){
         try {
             return entityManager.createNamedQuery("userByEmail", UserEntity.class)
                     .setParameter("email", email)
