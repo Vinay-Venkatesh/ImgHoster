@@ -128,6 +128,16 @@
                             <language>spring</language>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>admin</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/src/main/resources/endpoints/admin.json</inputSpec>
+                            <language>spring</language>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
         </plugins>
